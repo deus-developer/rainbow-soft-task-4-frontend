@@ -1,5 +1,5 @@
 import { Component } from "react";
-import './GeneratorForm.css';
+import './GeneratorForm.less';
 
 
 type GeneratorFormProps = {

@@ -1,4 +1,4 @@
-import "./GeneratorOutput.css";
+import "./GeneratorOutput.less";
 
 interface GeneratorProps {
     numbers: string

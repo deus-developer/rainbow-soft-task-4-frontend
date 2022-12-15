@@ -1,5 +1,4 @@
-import React from 'react';
-import './App.css';
+import './App.less';
 import { Header } from './components/Header'
 import { GeneratorBlock } from './components/GeneratorBlock'
 
