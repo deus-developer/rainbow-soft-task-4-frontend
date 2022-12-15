@@ -1,6 +1,6 @@
 const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
-
+const TSLintPlugin = require('tslint-webpack-plugin')
 
 module.exports = {
     context: path.resolve(__dirname, 'src'),
@@ -14,6 +14,9 @@ module.exports = {
         static: './dist',
     },
     plugins: [
+        new TSLintPlugin({
+            files: ['./src/**/*.ts']
+        }),
         new HTMLWebpackPlugin({
             template: '../public/index.html'
         }),
@@ -28,9 +31,13 @@ module.exports = {
             },
         },
         {
-            test: /\.css$/,
-            use: ["style-loader", "css-loader"],
-        },
+            test: /\.less$/i,
+            use: [
+              "style-loader",
+              "css-loader",
+              "less-loader",
+            ],
+          },
         {
             test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
             use: ["file-loader"],
