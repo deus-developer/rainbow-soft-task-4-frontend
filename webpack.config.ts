@@ -5,33 +5,39 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     mode: "production",
-    entry: './src/index.tsx', // Changed the entry file name
+    entry: './index.tsx', // Changed the entry file name
     output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, 'build')
+        filename: 'bundle.js',
+    },
+    devtool: 'inline-source-map',
+    devServer: {
+        static: './dist',
     },
     plugins: [
         new HTMLWebpackPlugin({
-            template: './public/index.html'
+            template: '../public/index.html'
         }),
     ],
     module: {
     rules: [
-        {   
-            exclude: "/node_modules/",
-            test: '/\.css$/',
-            use: ['style-loader', 'css-loader'],
-        },
         {
-            test: /\.(js|ts)x?$/,    // add |ts
+            test: /\.(ts|js)x?$/,
             exclude: /node_modules/,
             use: {
-                loader: 'babel-loader',
+                loader: "babel-loader",
             },
+        },
+        {
+            test: /\.css$/,
+            use: ["style-loader", "css-loader"],
+        },
+        {
+            test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
+            use: ["file-loader"],
         },
     ],
     },
     resolve: {
-    extensions: ['.tsx', '.ts', '.jsx', '.js'], // add .tsx, .ts
+        extensions: ['.tsx', '.ts', '.jsx', '.js'], // add .tsx, .ts
     },
 }
